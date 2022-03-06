@@ -1,0 +1,197 @@
+
+<div class="container">
+  <h1>Book a Flight</h1>
+  <form [formGroup]="flightForm">
+    <div class="form-group mt-3">
+      <label
+        >Full Name :
+        <span
+          style="color: red"
+          *ngIf="flightForm.get('fullName')?.errors?.['required']"
+        >
+          *</span
+        >
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="fullName"
+        placeholder="Enter your full-name"
+      />
+    </div>
+    <div class="form-group mt-3">
+      <label
+        >From :
+        <span
+          style="color: red"
+          *ngIf="flightForm.get('from')?.errors?.['required']"
+        >
+          *</span
+        >
+      </label>
+      <select class="custom-select mb-2" formControlName="from">
+        <option value="" selected>From</option>
+        <option value="China">China</option>
+        <option value="Greenland">Greenland</option>
+        <option value="England">England</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label
+        >To :
+        <span
+          style="color: red"
+          *ngIf="flightForm.get('to')?.errors?.['required']"
+        >
+          *</span
+        ></label
+      >
+      <select class="custom-select mb-2" formControlName="to">
+        <option value="" selected>To</option>
+        <option value="Ukraine">Ukraine</option>
+        <option value="Korea">Korea</option>
+        <option value="Japan">Japan</option>
+      </select>
+    </div>
+    <div class="flex-date">
+      <div>
+        <label
+          >Departure :
+          <span
+            style="color: salmon"
+            *ngIf="flightForm.get('departure')?.errors?.['required']"
+          >
+            *</span
+          >
+        </label>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="departurePicker"
+            formControlName="departure"
+            [min]="minDate"
+            [disabled]="flightForm.value.departure"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="departurePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #departurePicker disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div>
+        <label
+          >Arrival :
+          <span
+            style="color: salmon"
+            *ngIf="flightForm.get('arrival')?.errors?.['required']"
+          >
+            *</span
+          >
+        </label>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="arrivalPicker"
+            formControlName="arrival"
+            [min]="flightForm.value.departure"
+            [disabled]="flightForm.value.arrival"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="arrivalPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #arrivalPicker disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <label>Trip Type </label>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        value="One-way"
+        formControlName="type"
+      />
+      <label class="form-check-label">One way</label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        value="Return"
+        formControlName="type"
+      />
+      <label class="form-check-label">Return</label>
+    </div>
+    <div class="form-group mt-3">
+      <label>Adults</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="adults"
+        placeholder="0-9"
+        min="0"
+      />
+      <label>Children</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="children"
+        placeholder="0-9"
+        min="0"
+      />
+      <label>Infants</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="infants"
+        placeholder="0-9"
+        min="0"
+      />
+    </div>
+    <button
+      style =  "background-color: rgba(127, 223, 252, 0.63);"
+      class="btn-lg btn-block"
+      type="submit"
+      [disabled]="flightForm.invalid"
+      (click)="onSubmit(flightForm.value)"
+    >
+      Submit
+    </button>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Full Name</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+        <th scope="col">Type</th>
+        <th scope="col">Departure</th>
+        <th scope="col">Arrival</th>
+        <th scope="col">Adults</th>
+        <th scope="col">Children</th>
+        <th scope="col">Infants</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let f of flight">
+        <td>{{ f.fullName }}</td>
+        <td>{{ f.from }}</td>
+        <td>{{ f.to }}</td>
+        <td>{{ f.type }}</td>
+        <td>{{ f.departure | date: "d MMM y" }}</td>
+        <td>{{ f.arrival | date: "d MMM y" }}</td>
+        <td>{{ f.adults }}</td>
+        <td>{{ f.children }}</td>
+        <td>{{ f.infants }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
