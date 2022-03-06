@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Fredoka:wght@300&family=Ubuntu&display=swap');
-
+@font-face {
+    font-family: 'Comfortaa', cursive;
+    src: url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Fredoka:wght@300&family=Ubuntu&display=swap');
+}
 * {
   box-sizing: border-box;
 }
@@ -11,10 +14,7 @@ h1 {
   display: flex;
   justify-content: space-around;
 }
-.bottom {
-  background-color: #64a3df;
-}
-@font-face {
-    font-family: 'Comfortaa', cursive;
-    src: url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Fredoka:wght@300&family=Ubuntu&display=swap');
+
+div {
+  background-color :rgb(255, 239, 238) ;
 }

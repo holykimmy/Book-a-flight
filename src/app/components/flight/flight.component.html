@@ -1,12 +1,13 @@
 
 <div class="container">
+  <br>
   <h1>Book a Flight</h1>
   <form [formGroup]="flightForm">
     <div class="form-group mt-3">
       <label
         >Full Name :
         <span
-          style="color: red"
+          style="color: salmon"
           *ngIf="flightForm.get('fullName')?.errors?.['required']"
         >
           *</span
@@ -23,7 +24,7 @@
       <label
         >From :
         <span
-          style="color: red"
+          style="color: salmon"
           *ngIf="flightForm.get('from')?.errors?.['required']"
         >
           *</span
@@ -40,7 +41,7 @@
       <label
         >To :
         <span
-          style="color: red"
+          style="color: salmon"
           *ngIf="flightForm.get('to')?.errors?.['required']"
         >
           *</span
@@ -134,7 +135,7 @@
         type="number"
         class="form-control"
         formControlName="adults"
-        placeholder="0-9"
+        placeholder="Enter a number"
         min="0"
       />
       <label>Children</label>
@@ -142,7 +143,7 @@
         type="number"
         class="form-control"
         formControlName="children"
-        placeholder="0-9"
+        placeholder="Enter a number"
         min="0"
       />
       <label>Infants</label>
@@ -150,13 +151,13 @@
         type="number"
         class="form-control"
         formControlName="infants"
-        placeholder="0-9"
+        placeholder="Enter a number"
         min="0"
       />
     </div>
     <button
-      style =  "background-color: rgba(127, 223, 252, 0.63);"
-      class="btn-lg btn-block"
+      style =  "background-color: rgba(255, 149, 149, 0.63);"
+      class="btn btn-block"
       type="submit"
       [disabled]="flightForm.invalid"
       (click)="onSubmit(flightForm.value)"
